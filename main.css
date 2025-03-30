@@ -1,0 +1,91 @@
+:root {
+  --s-xs: 0.4rem;
+  --s-sm: 0.8rem;
+  --s-md: 1.2rem;
+  --s-lg: 2rem;
+  --s-xl: 3.2rem;
+  --s-xxl: 5.2rem;
+
+  --f-sm: 1.2rem;
+  --f-md: 1.6rem;
+  --f-lg: 3.2rem;
+  --f-xl: 5.2rem;
+
+  /* Colors taken from https://coolors.co/2B303A-EEE5E9-247BA0-63A375-D68FD6 */
+  --color-primary: #247BA0;
+  --color-secondary: #63A375;
+  --color-tertiary: #D68FD6;
+
+  --color-generic-white: #FFF;
+  --color-generic-gray-light: #BEBEBE;
+  --color-generic-gray: #7C7C7C;
+  --color-generic-black: #000;
+
+  --color-generic-foreground: #2B303A;
+  --color-generic-background: #EEE5E9;
+
+  --color-platform-linkedin: #0e76a8;
+  --color-platform-facebook: #4267B2;
+
+  --border-radius-sm: 0.8rem;
+  --border-radius: 1.2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-generic-background);
+  color: var(--color-generic-foreground);
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: var(--f-md);
+}
+
+body,
+#__nuxt {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+#__nuxt {
+  display: flex;
+  justify-content: center;
+}
+
+button,
+input,
+select,
+a {
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+button,
+input,
+select {
+  line-height: 1;
+  border: 0;
+  padding: 0;
+}
+
+input,
+button,
+a {
+  font: inherit;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}

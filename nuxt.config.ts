@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@pinia/nuxt',
   ],
-  css: ['reset-css'],
+  css: ['reset-css', '~/main.css'],
   fonts: {
     defaults: {
       weights: [400, 700],
