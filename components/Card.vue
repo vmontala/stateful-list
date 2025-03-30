@@ -16,11 +16,12 @@ defineProps({
 <style scoped>
 .card {
   background-color: var(--color-generic-white);
-  border: 0.2rem solid var(--color-generic-gray-light);
+  border: var(--border);
   border-radius: var(--border-radius-sm);
   container-type: inline-size;
   display: flex;
   gap: var(--s-md);
   padding: var(--s-md);
+  width: 100%;
 }
 </style>

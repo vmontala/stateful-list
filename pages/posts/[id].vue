@@ -17,7 +17,7 @@
           </template>
         </div>
         <h2 class="post__title">
-          {{ post.title || post.headline || '<Work in Progress>' }}
+          {{ post.formattedTitle }}
           <template v-if="post.title && post.headline">
             ({{ post.headline }})
           </template>
@@ -69,8 +69,8 @@ const post = ref(postsStore.getById(parseInt(route.params.id, 10)))
 
 const metadata = computed(() => ({
   ID: post.value.id,
-  Status: post.value.status,
-  Platform: post.value.platform,
+  Status: post.value.status.label,
+  Platform: post.value.platform.label,
   Author: post.value.author,
   Date: post.value.date,
   Link: post.value.link,
@@ -88,6 +88,7 @@ definePageMeta({
   display: flex;
   flex-direction: column;
   gap: var(--s-lg);
+  align-items: flex-start;
 
   .post__details {
     flex-direction: column;

@@ -29,6 +29,9 @@
 
   --border-radius-sm: 0.8rem;
   --border-radius: 1.2rem;
+
+  --border: 0.2rem solid var(--color-generic-gray-light);
+  --outline: 0.2rem solid var(--color-primary);
 }
 
 * {

@@ -1,37 +1,39 @@
 <template>
-  <Card component="article" class="post">
-    <PostStatus :status="post.status" class="post__status" />
-    <div class="post__id">
-      #{{ post.id }}
-    </div>
-    <h2
-      class="post__title"
-      :class="{ 'post__title--placeholder': !post.title && !post.headline }"
-    >
-      {{ post.title || post.headline || '<Work in Progress>' }}
-    </h2>
-    <div class="post__context">
-      <template v-if="action">
-        {{ action }}
-      </template>
-      <div class="post__platform" :class="[`post__platform--${post.platform.toLowerCase()}`]">
-        {{ post.platform }}
+  <NuxtLink :to="`/posts/${post.id}`" class="post">
+    <Card component="article" class="post__details">
+      <PostStatus :status="post.status" class="post__status" />
+      <div class="post__id">
+        #{{ post.id }}
       </div>
-      <template v-if="post.author">
-        by
-        <div class="post__author">
-          {{ post.author }}
-        </div>
-      </template>
-      <div
-        class="post__date"
-        :title="post.date.label.initial"
-        v-if="post.date"
+      <h2
+        class="post__title"
+        :class="{ 'post__title--placeholder': !post.title && !post.headline }"
       >
-        {{ post.date.label.relative }}
+        {{ post.formattedTitle }}
+      </h2>
+      <div class="post__context">
+        <template v-if="action">
+          {{ action }}
+        </template>
+        <div class="post__platform" :class="[`post__platform--${post.platform.value}`]">
+          {{ post.platform.label }}
+        </div>
+        <template v-if="post.author">
+          by
+          <div class="post__author">
+            {{ post.author }}
+          </div>
+        </template>
+        <div
+          class="post__date"
+          :title="post.date.label.initial"
+          v-if="post.date"
+        >
+          {{ post.date.label.relative }}
+        </div>
       </div>
-    </div>
-  </Card>
+    </Card>
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>
@@ -49,13 +51,23 @@ const actionMap = {
   archived: 'Published on',
 }
 
-const action = computed(() => actionMap[props.post.status])
+const action = computed(() => actionMap[props.post.status.value])
 </script>
 
 <style scoped>
 .post {
-  flex-wrap: wrap;
-  align-items: center;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .post__details ,
+  &:focus-visible .post__details {
+    outline: var(--outline);
+  }
+
+  .post__details {
+    flex-wrap: wrap;
+    align-items: center;
+  }
 
   .post__id,
   .post__context {

@@ -1,13 +1,13 @@
 <template>
-  <Pill :type="map[status]">
-    {{ status }}
+  <Pill :type="map[status.value]">
+    {{ status.label }}
   </Pill>
 </template>
 
 <script lang="ts" setup>
 defineProps({
   status: {
-    type: String,
+    type: Object,
     required: true,
   },
 })
