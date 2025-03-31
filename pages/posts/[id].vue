@@ -60,6 +60,9 @@
         </PostMetadata>
       </div>
     </Card>
+    <div class="post__empty" v-else>
+      Post #{{ $route.params.id }} found
+    </div>
   </div>
 </template>
 
@@ -100,10 +103,10 @@ definePageMeta({
 
 <style scoped>
 .post {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   gap: var(--s-lg);
-  align-items: flex-start;
 
   .post__back {
     display: flex;
@@ -122,13 +125,21 @@ definePageMeta({
   }
 
   .post__label {
-    text-transform: uppercase;
-    font-size: var(--f-sm);
     color: var(--color-generic-gray);
+    font-size: var(--f-sm);
+    text-transform: uppercase;
   }
 
   .post__title {
     font-size: var(--f-lg);
+  }
+
+  .post__empty {
+    color: var(--color-generic-gray);
+    font-style: italic;
+    padding: var(--s-xl);
+    text-align: center;
+    width: 100%;
   }
 }
 </style>

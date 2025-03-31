@@ -66,8 +66,8 @@ const action = computed(() => actionMap[props.post.status.value])
   }
 
   .post__details {
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .post__id,
@@ -81,13 +81,13 @@ const action = computed(() => actionMap[props.post.status.value])
   }
 
   .post__id {
-    margin-left: auto;
     align-self: flex-start;
+    margin-left: auto;
   }
 
   .post__title {
-    font-size: var(--f-lg);
     flex-basis: 100%;
+    font-size: var(--f-lg);
 
     &.post__title--placeholder {
       color: var(--color-generic-gray);
@@ -133,8 +133,8 @@ const action = computed(() => actionMap[props.post.status.value])
     }
 
     .post__status {
-      order: 3;
       margin-left: auto;
+      order: 3;
     }
   }
 }

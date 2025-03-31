@@ -55,10 +55,10 @@ defineOptions({ inheritAttrs: false })
   }
 
   .dropdown__value {
-    background-color: var(--color-generic-white);
-    padding: var(--s-sm) var(--s-xl) var(--s-sm) var(--s-sm);
-    display: flex;
     align-items: center;
+    background-color: var(--color-generic-white);
+    display: flex;
+    padding: var(--s-sm) var(--s-xl) var(--s-sm) var(--s-sm);
     position: relative;
   }
 

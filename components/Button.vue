@@ -14,10 +14,10 @@
   background-color: var(--color-primary);
   border-radius: var(--border-radius-sm);
   color: var(--color-generic-white);
+  cursor: pointer;
   display: flex;
   justify-content: center;
   padding: var(--s-xs) var(--s-sm);
-  cursor: pointer;
 
   &:hover,
   &:focus-visible {

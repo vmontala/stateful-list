@@ -34,15 +34,6 @@ defineOptions({ inheritAttrs: false })
       color: var(--color-generic-gray-light);
     }
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-    }
-
-    &[type=number] {
-      -moz-appearance: textfield;
-    }
-
     &[disabled] {
       background-color: var(--color-generic-background);
       color: var(--color-generic-gray);

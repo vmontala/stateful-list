@@ -6,12 +6,15 @@
       <Dropdown v-model="filters.values.status" :options="optionsStore.statuses" />
       <Dropdown v-model="filters.values.sort" :options="optionsStore.sort" />
     </div>
-    <div class="posts__list">
+    <div class="posts__list" v-if="sortedPosts.length">
       <Post
         :post="post"
         v-for="post in sortedPosts"
         :key="post.id"
       />
+    </div>
+    <div class="posts__empty" v-else>
+      No posts matching the filters
     </div>
   </div>
 </template>
@@ -19,11 +22,13 @@
 <script lang="ts" setup>
 import type Post from '~/types/Post'
 
-import usePostsStore from '~/stores/posts'
 import useOptionsStore from '~/stores/options'
+import usePostsStore from '~/stores/posts'
 
-const postsStore = usePostsStore()
 const optionsStore = useOptionsStore()
+const postsStore = usePostsStore()
+
+const posts = postsStore.list
 
 const filters = reactive(useFilters({
   search: '',
@@ -31,8 +36,6 @@ const filters = reactive(useFilters({
   status: '',
   sort: 'date',
 }))
-
-const posts = postsStore.list
 
 const filteredPosts = computed(() => {
   const {
@@ -105,6 +108,13 @@ definePageMeta({
     @container (min-width: 80rem) {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .posts__empty {
+    color: var(--color-generic-gray);
+    font-style: italic;
+    padding: var(--s-xl);
+    text-align: center;
   }
 }
 </style>

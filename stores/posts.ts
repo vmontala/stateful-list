@@ -3,8 +3,8 @@ import type PostImage from '~/types/PostImage'
 
 import data from '~/assets/social-posts-large.json'
 
-import date from '~/utils/date'
 import array from '~/utils/array'
+import date from '~/utils/date'
 
 interface UnformattedPost {
   id: number,

@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
@@ -8,6 +7,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-svgo',
   ],
+  app: {
+    head: {
+      title: 'Stateful list'
+    },
+  },
   css: ['reset-css', '~/main.css'],
   fonts: {
     defaults: {
