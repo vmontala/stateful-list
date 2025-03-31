@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@pinia/nuxt',
+    'nuxt-svgo',
   ],
   css: ['reset-css', '~/main.css'],
   fonts: {
@@ -13,5 +14,9 @@ export default defineNuxtConfig({
       weights: [400, 700],
       styles: ['normal', 'italic'],
     },
-  }
+  },
+  svgo: {
+    customComponent: 'Icon',
+    componentPrefix: 'Icon',
+  },
 })

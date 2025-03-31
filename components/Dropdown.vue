@@ -15,6 +15,7 @@
     </select>
     <div class="dropdown__value">
       {{ selected?.label }}
+      <Icon-CaretDown class="dropdown__icon" />
     </div>
   </div>
 </template>
@@ -50,13 +51,20 @@ defineOptions({ inheritAttrs: false })
     inset: 0;
     opacity: 0;
     position: absolute;
+    z-index: 1;
   }
 
   .dropdown__value {
     background-color: var(--color-generic-white);
-    padding: var(--s-sm) 0 var(--s-sm) var(--s-sm);
+    padding: var(--s-sm) var(--s-xl) var(--s-sm) var(--s-sm);
     display: flex;
     align-items: center;
+    position: relative;
+  }
+
+  .dropdown__icon {
+    position: absolute;
+    right: 0;
   }
 
   .dropdown__field[disabled] + .dropdown__value {

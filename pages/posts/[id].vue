@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <NuxtLink :to="back" class="post__back">
-      &lt; Go back to list
+      <Icon-ArrowLeft size="16" /> Go back to list
     </NuxtLink>
     <Card
       component="section"
