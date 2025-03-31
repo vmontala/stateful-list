@@ -28,8 +28,10 @@ import usePostsStore from '~/stores/posts'
 const optionsStore = useOptionsStore()
 const postsStore = usePostsStore()
 
+// Non-processed posts
 const posts = postsStore.list
 
+// Filter definition
 const filters = reactive(useFilters({
   search: '',
   platform: '',
@@ -37,6 +39,7 @@ const filters = reactive(useFilters({
   sort: 'date',
 }))
 
+// Filtered posts
 const filteredPosts = computed(() => {
   const {
     search,
@@ -51,6 +54,7 @@ const filteredPosts = computed(() => {
   ))
 })
 
+// Sort definitions
 const sortMethods: { [key: string]: (a: Post, b: Post) => number } = {
   date: (a, b) => {
     if (!b.date?.value) {
@@ -67,6 +71,7 @@ const sortMethods: { [key: string]: (a: Post, b: Post) => number } = {
   title: (a, b) => a.formattedTitle.localeCompare(b.formattedTitle),
 }
 
+// Sorted posts
 const sortedPosts = computed(() => {
   const { sort } = filters.values
 
@@ -77,9 +82,7 @@ const sortedPosts = computed(() => {
   return [...filteredPosts.value].sort(sortMethods[sort])
 })
 
-definePageMeta({
-  title: 'Post list'
-})
+definePageMeta({ title: 'Post list' })
 </script>
 
 <style scoped>

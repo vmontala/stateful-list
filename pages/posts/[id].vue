@@ -77,6 +77,8 @@ const id = parseInt(route.params.id as string, 10)
 
 const post = ref(postsStore.getById(id))
 
+// Although maybe a bit over-engineered, I really like when relying presentation responsibilities to
+// the views, regardless of if doing so via JS
 const metadata = computed(() => {
   if (!post.value) {
     return {}
@@ -94,11 +96,10 @@ const metadata = computed(() => {
   }
 })
 
+// This could be done in many different ways, however I wanted to keep a native link
 const back = computed(() => (router.options.history.state.back || '/') as string)
 
-definePageMeta({
-  title: 'Post details'
-})
+definePageMeta({ title: 'Post details' })
 </script>
 
 <style scoped>

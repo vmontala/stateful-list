@@ -45,6 +45,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
+// While ideally this should be done with some `i18n` library, I really like going for user
+// interfaces that can be read in natural text
 const actionMap: { [key: string]: string } = {
   draft: 'Drafted for',
   scheduled: 'Scheduled for',

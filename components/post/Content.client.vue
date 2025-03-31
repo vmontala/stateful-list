@@ -9,6 +9,8 @@
 </template>
 
 <script lang="ts" setup>
+// Decided to implement this component client-sided to take advantage of Nuxt's versatility
+
 const props = defineProps({
   content: {
     type: String,

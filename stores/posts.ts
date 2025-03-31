@@ -22,6 +22,7 @@ interface UnformattedPost {
   }
 }
 
+// Formats the post from the static data format to what's needed on the application
 const formatPost = (post: UnformattedPost): Post => {
   const formattedDate = !post.published_date || (post.published_date === 'Invalid Date') ? null : {
     label: {
@@ -52,6 +53,7 @@ const formatPost = (post: UnformattedPost): Post => {
     link: post.link,
     tags: array.conjunction(post.meta.tags || []),
     images: post.meta.images,
+    // These will be used as search terms on the filtering
     searchable: [
       `#${post.id}`,
       post.status,
