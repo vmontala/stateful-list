@@ -37,14 +37,15 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-  post: {
-    type: Object,
-    required: true,
-  },
-})
+import type Post from '~/types/Post'
 
-const actionMap = {
+interface Props {
+  post: Post
+}
+
+const props = defineProps<Props>()
+
+const actionMap: { [key: string]: string } = {
   draft: 'Drafted for',
   scheduled: 'Scheduled for',
   published: 'Published on',

@@ -5,14 +5,15 @@
 </template>
 
 <script lang="ts" setup>
-defineProps({
-  status: {
-    type: Object,
-    required: true,
-  },
-})
+import type PostStatus from '~/types/PostStatus'
 
-const map = {
+interface Props {
+  status: PostStatus
+}
+
+defineProps<Props>()
+
+const map: { [key: string]: string } = {
   published: 'secondary',
   scheduled: 'primary',
   archived: 'tertiary',

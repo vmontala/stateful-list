@@ -12,7 +12,7 @@ export default defineStore('options', () => {
       ...unique,
       post.platform,
     ]
-  }, []))
+  }, [{ label: 'All', value: '' }]))
 
   const statuses = computed(() => postsStore.list.reduce((unique, post) => {
     if (unique.some((status) => status.value === post.status.value)) {
@@ -23,10 +23,17 @@ export default defineStore('options', () => {
       ...unique,
       post.status,
     ]
-  }, []))
+  }, [{ label: 'All', value: '' }]))
+
+  const sort = [
+    { label: 'Date', value: 'date' },
+    { label: 'ID', value: 'id' },
+    { label: 'Title', value: 'title' },
+  ]
 
   return {
     platforms,
     statuses,
+    sort,
   }
 })

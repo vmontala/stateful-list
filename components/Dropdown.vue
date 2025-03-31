@@ -14,20 +14,21 @@
       </option>
     </select>
     <div class="dropdown__value">
-      {{ selected.label }}
+      {{ selected?.label }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const model = defineModel({ type: String, required: true })
+import type Option from '~/types/Option'
 
-const props = defineProps({
-  options: {
-    type: Array,
-    required: true,
-  },
-})
+interface Props {
+  options: Option[]
+}
+
+const props = defineProps<Props>()
+
+const model = defineModel({ type: String, required: true })
 
 const selected = computed(() => props.options.find((option) => option.value === model.value))
 

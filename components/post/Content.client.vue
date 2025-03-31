@@ -18,7 +18,7 @@ const props = defineProps({
 
 const formatted = ref(false)
 
-const getPlainContent = (content) => {
+const getPlainContent = (content: string) => {
   const element = document.createElement('span')
 
   element.innerHTML = content

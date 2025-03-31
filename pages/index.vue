@@ -2,9 +2,9 @@
   <div class="posts">
     <div class="posts__filters">
       <Search v-model="filters.search" autofocus />
-      <Dropdown v-model="filters.platform" :options="options.platforms" />
-      <Dropdown v-model="filters.status" :options="options.statuses" />
-      <Dropdown v-model="filters.sort" :options="options.sort" />
+      <Dropdown v-model="filters.platform" :options="optionsStore.platforms" />
+      <Dropdown v-model="filters.status" :options="optionsStore.statuses" />
+      <Dropdown v-model="filters.sort" :options="optionsStore.sort" />
     </div>
     <div class="posts__list">
       <Post
@@ -17,6 +17,8 @@
 </template>
 
 <script lang="ts" setup>
+import type Post from '~/types/Post'
+
 import usePostsStore from '~/stores/posts'
 import useOptionsStore from '~/stores/options'
 
@@ -29,22 +31,6 @@ const filters = ref({
   status: '',
   sort: 'date',
 })
-
-const options = {
-  platforms: [
-    { label: 'All', value: '' },
-    ...optionsStore.platforms,
-  ],
-  statuses: [
-    { label: 'All', value: '' },
-    ...optionsStore.statuses,
-  ],
-  sort: [
-    { label: 'Date', value: 'date' },
-    { label: 'ID', value: 'id' },
-    { label: 'Title', value: 'title' },
-  ],
-}
 
 const posts = postsStore.list
 
@@ -62,7 +48,7 @@ const filteredPosts = computed(() => {
   ))
 })
 
-const sortMethods = {
+const sortMethods: { [key: string]: (a: Post, b: Post) => number } = {
   date: (a, b) => {
     if (!b.date?.value) {
       return -1
@@ -80,6 +66,10 @@ const sortMethods = {
 
 const sortedPosts = computed(() => {
   const { sort } = filters.value
+
+  if (!sortMethods[sort]) {
+    return filteredPosts.value
+  }
 
   return [...filteredPosts.value].sort(sortMethods[sort])
 })

@@ -3,7 +3,11 @@
     <NuxtLink to="/">
       &lt; Go back to list
     </NuxtLink>
-    <Card component="section" class="post__details">
+    <Card
+      component="section"
+      class="post__details"
+      v-if="post"
+    >
       <div class="post__section">
         <div class="post__label">
           <template v-if="post.title || (!post.title && !post.headline)">
@@ -65,18 +69,26 @@ import usePostsStore from '~/stores/posts'
 const postsStore = usePostsStore()
 const route = useRoute()
 
-const post = ref(postsStore.getById(parseInt(route.params.id, 10)))
+const id = parseInt(route.params.id as string, 10)
 
-const metadata = computed(() => ({
-  ID: post.value.id,
-  Status: post.value.status.label,
-  Platform: post.value.platform.label,
-  Author: post.value.author,
-  Date: post.value.date,
-  Link: post.value.link,
-  'Tag(s)': post.value.tags,
-  'Image(s)': post.value.images.length ? `${post.value.images.length} attachments` : undefined,
-}))
+const post = ref(postsStore.getById(id))
+
+const metadata = computed(() => {
+  if (!post.value) {
+    return {}
+  }
+
+  return {
+    ID: post.value.id,
+    Status: post.value.status.label,
+    Platform: post.value.platform.label,
+    Author: post.value.author,
+    Date: post.value.date,
+    Link: post.value.link,
+    'Tag(s)': post.value.tags,
+    'Image(s)': post.value.images.length ? `${post.value.images.length} attachments` : undefined,
+  }
+})
 
 definePageMeta({
   title: 'Post details'

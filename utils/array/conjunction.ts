@@ -4,6 +4,6 @@ const formatter = new Intl.ListFormat('en', {
 })
 
 // Formats a list of strings to a user-friendly string (`['a', 'b', 'c']` -> `a, b, and c`)
-const conjunction = (list) => formatter.format(list)
+const conjunction = (list: string[]) => formatter.format(list)
 
 export default conjunction
