@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <NuxtLink to="/">
+    <NuxtLink :to="back" class="post__back">
       &lt; Go back to list
     </NuxtLink>
     <Card
@@ -67,6 +67,7 @@
 import usePostsStore from '~/stores/posts'
 
 const postsStore = usePostsStore()
+const router = useRouter()
 const route = useRoute()
 
 const id = parseInt(route.params.id as string, 10)
@@ -90,6 +91,8 @@ const metadata = computed(() => {
   }
 })
 
+const back = computed(() => (router.options.history.state.back || '/') as string)
+
 definePageMeta({
   title: 'Post details'
 })
@@ -101,6 +104,11 @@ definePageMeta({
   flex-direction: column;
   gap: var(--s-lg);
   align-items: flex-start;
+
+  .post__back {
+    display: flex;
+    gap: var(--s-xs);
+  }
 
   .post__details {
     flex-direction: column;

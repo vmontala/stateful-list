@@ -1,10 +1,10 @@
 <template>
   <div class="posts">
     <div class="posts__filters">
-      <Search v-model="filters.search" autofocus />
-      <Dropdown v-model="filters.platform" :options="optionsStore.platforms" />
-      <Dropdown v-model="filters.status" :options="optionsStore.statuses" />
-      <Dropdown v-model="filters.sort" :options="optionsStore.sort" />
+      <Search v-model="filters.values.search" autofocus />
+      <Dropdown v-model="filters.values.platform" :options="optionsStore.platforms" />
+      <Dropdown v-model="filters.values.status" :options="optionsStore.statuses" />
+      <Dropdown v-model="filters.values.sort" :options="optionsStore.sort" />
     </div>
     <div class="posts__list">
       <Post
@@ -25,12 +25,12 @@ import useOptionsStore from '~/stores/options'
 const postsStore = usePostsStore()
 const optionsStore = useOptionsStore()
 
-const filters = ref({
+const filters = reactive(useFilters({
   search: '',
   platform: '',
   status: '',
   sort: 'date',
-})
+}))
 
 const posts = postsStore.list
 
@@ -39,7 +39,7 @@ const filteredPosts = computed(() => {
     search,
     platform,
     status,
-  } = filters.value
+  } = filters.values
 
   return posts.filter((post) => (
     (!search || post.searchable.some((value) => value.includes(search.toLowerCase())))
@@ -65,7 +65,7 @@ const sortMethods: { [key: string]: (a: Post, b: Post) => number } = {
 }
 
 const sortedPosts = computed(() => {
-  const { sort } = filters.value
+  const { sort } = filters.values
 
   if (!sortMethods[sort]) {
     return filteredPosts.value
